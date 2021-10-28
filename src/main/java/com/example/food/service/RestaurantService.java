@@ -6,11 +6,11 @@ import com.example.food.models.Restaurant;
 import java.util.List;
 
 public interface RestaurantService {
-    public default Restaurant addRestaurant(Restaurant restaurant) {
+    default Restaurant addRestaurant(Restaurant restaurant) {
         return null;
     }
 
-    public Restaurant addFoodItem(String restaurantName, FoodItem foodItem);
+    Restaurant addFoodItem(String restaurantName, FoodItem foodItem);
 
-    public List<Restaurant> getRestaurant();
+    List<Restaurant> getRestaurant();
 }
