@@ -1,6 +1,8 @@
 package com.example.food.controller;
 
 import com.example.food.models.FoodItem;
+import com.example.food.models.FoodOrder;
+import com.example.food.models.Order;
 import com.example.food.models.Restaurant;
 import com.example.food.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("/api/user")
 public class RestaurantController {
 
     @Autowired
@@ -35,6 +38,16 @@ public class RestaurantController {
     @GetMapping("/restaurant")
     public List<Restaurant> getRestaurant(){
         return restaurantService.getRestaurant();
+    }
+
+    @PostMapping("/placeOrder")
+    public Order placeOrder(@RequestBody Order order){
+        return restaurantService.placeOrder(order);
+    }
+
+    @GetMapping("/getOrder")
+    public List<Order> getOrder(){
+        return restaurantService.getOrder();
     }
 
 }

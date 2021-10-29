@@ -10,7 +10,7 @@ public class Restaurant {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long restaurantId;
     private String restaurantName;
-    @OneToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.ALL})
     private List<FoodItem> foodItems;
 
     public long getRestaurantId() {

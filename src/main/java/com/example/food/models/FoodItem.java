@@ -46,8 +46,8 @@ public class FoodItem {
         return foodItemPrice;
     }
 
-    public void setFoodItemPrice(int foodItemprice) {
-        this.foodItemPrice = foodItemprice;
+    public void setFoodItemPrice(int foodItemPrice) {
+        this.foodItemPrice = foodItemPrice;
     }
 
     public boolean isFoodItemVegetarian() {
