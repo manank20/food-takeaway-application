@@ -38,6 +38,6 @@ public class Role {
         this.name = name;
     }
 
-    public Role(Long o, String role_owner) {
-    }
+//    public Role(Long o, String role_owner) {
+//    }
 }
