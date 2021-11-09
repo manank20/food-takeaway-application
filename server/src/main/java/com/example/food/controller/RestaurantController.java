@@ -12,7 +12,9 @@ import java.util.List;
 
 
 @RestController
+
 @RequestMapping("/api/user")
+
 public class RestaurantController {
 
     @Autowired

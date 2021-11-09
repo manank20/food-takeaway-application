@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from "react";
 import AppRoutes from "./AppRoutes"
 import axios from "axios";
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 function App() {
 
     const [loggedIn, setLoggedIn] = useState();
+    const [accessToken, setAccessToken] = useState('');
     const [load, setLoad] = useState(false);
     useEffect(() => {
-        axios.get('https://foodizone-server.herokuapp.com/authenticate', {
-            withCredentials: true
+        axios.get('http://localhost:8080/authenticate',{
+            headers : {
+                Authorization:accessToken
+            }
         })
             .then(function (response) {
-                setLoggedIn(response.data.authentication)
+                setLoggedIn(response.data)
                 setLoad(true);
 
             }).catch(function (err) {
@@ -20,14 +23,17 @@ function App() {
                 setLoggedIn(false);
                 setLoad(true)
             })
-    }, [])
+    }, [accessToken])
     function authenticated(value) {
         setLoggedIn(value);
+    }
+    function applyAccessToken(value) {
+        setAccessToken("Bearer "+value);
     }
     if (load) {
 
         return (
-            <AppRoutes authenticated={authenticated} loggedIn={loggedIn} />
+            <AppRoutes authenticated={authenticated} loggedIn={loggedIn} applyAccessToken = {applyAccessToken} accessToken={accessToken}/>
 
         );
     } else {

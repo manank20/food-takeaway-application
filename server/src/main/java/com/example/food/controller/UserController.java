@@ -30,7 +30,9 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
+
 @RequestMapping("/api")
+
 public class UserController {
     @Autowired
     private AppUserService userService;
@@ -57,7 +59,14 @@ public class UserController {
         userService.addRoleToUser(form.getUsername(), form.getRoleName());
         return ResponseEntity.ok().build();
     }
-
+    @GetMapping("/authenticate")
+    public ResponseEntity<?> authenticate(){
+        return ResponseEntity.ok().body(true);
+    }
+    @GetMapping("/logout")
+    public ResponseEntity<?> logout(){
+        return ResponseEntity.ok().body(true);
+    }
     @GetMapping("/token/refresh")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String authorizationHeader = request.getHeader(AUTHORIZATION);

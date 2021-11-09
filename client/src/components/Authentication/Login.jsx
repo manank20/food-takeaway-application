@@ -22,15 +22,27 @@ function Login(props) {
             )
         })
     }
+    function convertToFormData(data) {
+        var form_data = new FormData();
+        for (var key in data) {
+            form_data.append(key, data[key]);
+        }
+        // for(var value of form_data.values()) {
+        //     console.log(value);
+        // }
+        return form_data;
+    }
     function handleSubmit(event) {
         event.preventDefault();
         console.log(form)
-        axios.post("https://foodizone-server.herokuapp.com/login", form, {
+
+        axios.post("http://localhost:8080/", convertToFormData(form), {
             withCredentials: true
         })
             .then(function (response) {
                 console.log(response.data)
-                props.authenticated(response.data.authentication)
+                // props.authenticated(response.data.authentication)
+                props.applyAccessToken(response.data.access_token);
                 setSignedIn(true);
             })
             .catch(function (error) {
