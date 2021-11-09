@@ -9,7 +9,7 @@ function App() {
     const [accessToken, setAccessToken] = useState('');
     const [load, setLoad] = useState(false);
     useEffect(() => {
-        axios.get('http://localhost:8080/authenticate',{
+        axios.get('http://localhost:8080/api/authenticate',{
             headers : {
                 Authorization:accessToken
             }
