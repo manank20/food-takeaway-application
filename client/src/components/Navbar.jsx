@@ -15,9 +15,9 @@ function Navbar(props) {
     }
     const [loggedOut,setLoggedOut]=useState(false)
     function handleLogOut(){
-        axios.get('https://foodizone-server.herokuapp.com/logout')
+        axios.get('https://localhost:8080/logout')
         .then(function(response){
-            setLoggedOut(response.data.authentication)
+            setLoggedOut(response.data)
             console.log(response.data)
         })
         .catch(function(err){

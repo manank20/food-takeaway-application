@@ -13,7 +13,7 @@ function AppRoutes(props) {
             </Route>
 
             <Route exact path="/authenticate">
-                <Login authenticated={props.authenticated} />
+                <Login authenticated={props.authenticated}  applyAccessToken = {props.applyAccessToken} accessToken={props.accessToken}/>
             </Route>
             <Route exact path={`/:id/order`}>
                 {props.loggedIn ? <Order /> : <Redirect to="/authenticate" />}
