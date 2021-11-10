@@ -3,15 +3,14 @@ import AppRoutes from "./AppRoutes"
 import axios from "axios";
 // axios.defaults.withCredentials = true;
 
-function App() {
+function App(props) {
 
     const [loggedIn, setLoggedIn] = useState();
-    const [accessToken, setAccessToken] = useState('');
     const [load, setLoad] = useState(false);
     useEffect(() => {
-        axios.get('http://localhost:8080/api/authenticate',{
-            headers : {
-                Authorization:accessToken
+        axios.get('http://localhost:8080/api/authenticate', {
+            headers: {
+                Authorization: props.accessToken
             }
         })
             .then(function (response) {
@@ -23,18 +22,25 @@ function App() {
                 setLoggedIn(false);
                 setLoad(true)
             })
-    }, [accessToken])
+    }, [props.accessToken])
     function authenticated(value) {
-        setLoggedIn(value);
-    }
-    function applyAccessToken(value) {
-        setAccessToken("Bearer "+value);
+        axios.get('http://localhost:8080/api/authenticate', {
+            headers: {
+                Authorization: props.accessToken
+            }
+        })
+            .then(function (response) {
+                setLoggedIn(response.data)
+
+            }).catch(function (err) {
+                console.log(err);
+                setLoggedIn(false);
+            })
     }
     if (load) {
 
         return (
-            <AppRoutes authenticated={authenticated} loggedIn={loggedIn} applyAccessToken = {applyAccessToken} accessToken={accessToken}/>
-
+            <AppRoutes authenticated={authenticated} loggedIn={loggedIn} applyAccessToken={props.applyAccessToken} accessToken={props.accessToken} />
         );
     } else {
         return <h1>Loading...</h1>

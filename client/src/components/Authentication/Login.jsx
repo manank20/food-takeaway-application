@@ -27,9 +27,6 @@ function Login(props) {
         for (var key in data) {
             form_data.append(key, data[key]);
         }
-        // for(var value of form_data.values()) {
-        //     console.log(value);
-        // }
         return form_data;
     }
     function handleSubmit(event) {
@@ -50,6 +47,7 @@ function Login(props) {
             })
     }
     if (signedIn) {
+        props.authenticated();
         return <Redirect to="/" />
     }
     return (
