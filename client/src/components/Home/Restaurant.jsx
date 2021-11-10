@@ -22,10 +22,6 @@ function Restaurant(props){
             <div className="restaurant-container-rating">
                 rating
             </div>
-            <div className="restaurant-container-type">
-                {add3Dots(`${props.type}`,41)}
-                
-            </div>
         </div>
         </Link>
         

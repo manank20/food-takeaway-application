@@ -15,10 +15,13 @@ function Navbar(props) {
     }
     const [loggedOut,setLoggedOut]=useState(false)
     function handleLogOut(){
-        axios.get('https://localhost:8080/logout')
+        axios.get('http://localhost:8080/api/logout',{
+            headers : {
+                Authorization:props.accessToken
+            }
+        })
         .then(function(response){
             setLoggedOut(response.data)
-            console.log(response.data)
         })
         .catch(function(err){
             console.log(err);

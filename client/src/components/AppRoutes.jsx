@@ -9,7 +9,7 @@ function AppRoutes(props) {
     return (
         <Switch>
             <Route exact path="/">
-                {props.loggedIn ? <Home /> : <Redirect to="/authenticate" />}
+                {props.loggedIn ? <Home accessToken={props.accessToken}/> : <Redirect to="/authenticate" />}
             </Route>
 
             <Route exact path="/authenticate">

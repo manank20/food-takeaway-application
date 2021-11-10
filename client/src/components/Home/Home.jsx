@@ -4,13 +4,13 @@ import RestaurantList from "./RestaurantList";
 import AccountIcon from "../AccountIcon";
 import Footer from "../Footer/Footer"
 
-function Home() {
+function Home(props) {
     return (
 
         <div>
-            <Navbar searchDisplay={true} />
+            <Navbar searchDisplay={true} accessToken={props.accessToken}/>
             <AccountIcon />
-            <RestaurantList />
+            <RestaurantList accessToken = {props.accessToken}/>
             <Footer />
 
         </div>

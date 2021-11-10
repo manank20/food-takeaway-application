@@ -3,12 +3,16 @@ import axios from "axios";
 import Restaurant from "./Restaurant";
 
 
-function RestaurantList() {
+function RestaurantList(props) {
     const [restaurants, setRestaurants] = useState([]);
     useEffect(() => {
         
             let mounted = true;
-            axios.get(`https://foodizone-server.herokuapp.com/api`)
+            axios.get(`http://localhost:8080/api/user/restaurant`,{
+                headers : {
+                    Authorization:props.accessToken
+                }
+            })
                 .then(function (response) {
                     if (mounted) {
                         const updateRestaurants = [...response.data];
@@ -25,10 +29,9 @@ function RestaurantList() {
 
         <div className="restaurant-list" >
             {restaurants.map(restaurant => <Restaurant
-                key={restaurant._id}
-                id={restaurant._id}
-                name={restaurant.name}
-                type={restaurant.type}
+                key={restaurant.restaurantId}
+                id={restaurant.restaurantId}
+                name={restaurant.restaurantName}
                 items={restaurant.foodItems} />
             )}
         </div>)
