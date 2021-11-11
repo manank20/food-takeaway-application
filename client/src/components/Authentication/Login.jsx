@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer"
 import axios from "axios";
 axios.defaults.withCredentials = true
@@ -9,7 +9,6 @@ function Login(props) {
         username: '',
         password: ''
     });
-    const [signedIn, setSignedIn] = useState(false);
 
     function handleChange(event) {
         const { name, value } = event.target
@@ -31,25 +30,18 @@ function Login(props) {
     }
     function handleSubmit(event) {
         event.preventDefault();
-        console.log(form)
-
         axios.post("http://localhost:8080/", convertToFormData(form), {
             withCredentials: true
         })
             .then(function (response) {
-                console.log(response.data)
-                // props.authenticated(response.data.authentication)
                 props.applyAccessToken(response.data.access_token);
-                setSignedIn(true);
+                props.authenticated();
             })
             .catch(function (error) {
                 console.log(error);
             })
     }
-    if (signedIn) {
-        props.authenticated();
-        return <Redirect to="/" />
-    }
+    
     return (
         <div>
             <Link to="/" style={{ textDecoration: 'none' }}>

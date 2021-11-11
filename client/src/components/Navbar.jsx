@@ -1,7 +1,6 @@
 import React,{ useState } from "react"
 import SearchIcon from '@material-ui/icons/Search';
 import axios from "axios";
-import { Redirect } from "react-router-dom";
 
 function Navbar(props) {
  
@@ -13,7 +12,7 @@ function Navbar(props) {
     function handleClick(){
         props.onChange(search);
     }
-    const [loggedOut,setLoggedOut]=useState(false)
+
     function handleLogOut(){
         axios.get('http://localhost:8080/api/logout',{
             headers : {
@@ -21,15 +20,14 @@ function Navbar(props) {
             }
         })
         .then(function(response){
-            setLoggedOut(response.data)
+            props.applyAccessToken('');
+            props.authenticated();
         })
         .catch(function(err){
             console.log(err);
         })
     }
-    if(loggedOut){
-        return <Redirect to="/authenticate" />
-    }
+
     return (<nav className="navbar">
         <ul className="navbar-list">
             <li className="logo navbar-list-items">foodizone</li>

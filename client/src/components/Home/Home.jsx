@@ -8,7 +8,7 @@ function Home(props) {
     return (
 
         <div>
-            <Navbar searchDisplay={true} accessToken={props.accessToken}/>
+            <Navbar searchDisplay={true} authenticated={props.authenticated} applyAccessToken={props.applyAccessToken} accessToken={props.accessToken}/>
             <AccountIcon />
             <RestaurantList accessToken = {props.accessToken}/>
             <Footer />
