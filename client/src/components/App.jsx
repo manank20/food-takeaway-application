@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import AppRoutes from "./AppRoutes"
 import axios from "axios";
-// axios.defaults.withCredentials = true;
 
 function App(props) {
 

@@ -5,16 +5,21 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./Authentication/Login"
 import Register from "./Authentication/Register"
 import Location from "./Payment/Location"
+
+const ConditionalRoute = ({ children, condition, redirect, ...rest }) => (
+    <Route {...rest} render={() => (condition ? children : <Redirect to={redirect} />)} />
+);
+
 function AppRoutes(props) {
     return (
         <Switch>
             <Route exact path="/">
-                {props.loggedIn ? <Home accessToken={props.accessToken}/> : <Redirect to="/authenticate" />}
+                {props.loggedIn ? <Home authenticated={props.authenticated} applyAccessToken={props.applyAccessToken} accessToken={props.accessToken}/> : <Redirect to="/authenticate" />}
             </Route>
 
-            <Route exact path="/authenticate">
-                <Login authenticated={props.authenticated}  applyAccessToken = {props.applyAccessToken} accessToken={props.accessToken}/>
-            </Route>
+            <ConditionalRoute exact path="/authenticate" condition={!props.loggedIn} redirect='/'>
+                <Login loggedIn={props.loggedIn} authenticated={props.authenticated}  applyAccessToken = {props.applyAccessToken} accessToken={props.accessToken}/>
+            </ConditionalRoute>
             <Route exact path={`/:id/order`}>
                 {props.loggedIn ? <Order /> : <Redirect to="/authenticate" />}
             </Route>

@@ -24,7 +24,7 @@ function RestaurantList(props) {
                 });
             return () => mounted = false;
       
-    }, []);
+    }, [props.accessToken]);
     return (
 
         <div className="restaurant-list" >
