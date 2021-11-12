@@ -23,9 +23,9 @@ function AppRoutes(props) {
             <Route exact path={`/:id/order`}>
                 {props.loggedIn ? <Order /> : <Redirect to="/authenticate" />}
             </Route>
-            <Route exact path="/authenticate/register">
-                <Register />
-            </Route>
+            <ConditionalRoute exact path="/authenticate/register" condition={!props.registerNow} redirect='/'>
+                <Register authenticated={props.authenticated} registerNow={props.resgisterNow} registered={props.registered} />
+            </ConditionalRoute>
             <Route exact path='/:id/order/location'>
                 <Location />
             </Route>

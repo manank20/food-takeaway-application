@@ -2,7 +2,7 @@ import axios from "axios";
 import React,{ useState } from "react";
 import { Link } from "react-router-dom";
 
-function Register() {
+function Register(props) {
     const [form, setForm] = useState({
         name:'',
         username:'',
@@ -29,6 +29,7 @@ function Register() {
         })
         .then(function(res){
             console.log(res);
+            props.registered(true);
         }).catch(e => {
             console.error(e);
         })
