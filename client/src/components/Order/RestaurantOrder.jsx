@@ -11,7 +11,7 @@ function RestaurantOrder(props) {
     useEffect(() => {
         let mounted = true;
         if (foodItems.length > 0 && mounted) {
-            const allCategories = foodItems.map(item => item.category);
+            const allCategories = foodItems.map(item => item.foodItemCategory);
 
             setFoodCategory([...new Set(allCategories)]);
 
@@ -26,7 +26,7 @@ function RestaurantOrder(props) {
             for (let index = 0; index < foodCategory.length; index++) {
                 let category = [];
                 for (let i = 0; i < foodItems.length; i++) {
-                    if (foodItems[i].category === foodCategory[index]) {
+                    if (foodItems[i].foodItemCategory === foodCategory[index]) {
                         category.push(foodItems[i]);
                     }
                 }
@@ -43,7 +43,7 @@ function RestaurantOrder(props) {
     }, [foodCategory, foodItems]);
 
     return (
-        <div className="order-restaurant" key={props.id}>
+        <div className="order-restaurant" >
             <section className="order-restaurant-header">
                 <div className="order-restaurant-image-header">
                     <img className="order-restaurant-image1" src="/images/jakub-kapusnak-4f4YZfDMLeU-unsplash.jpg" alt="" />
@@ -83,11 +83,11 @@ function RestaurantOrder(props) {
                                 <h1 className="order-restaurant-food-category-heading" id={`restaurant-menu-categories-${category}`}>{category}</h1>
                                 {load ? foodItemSorted[index].map(item =>
                                     <FoodItem
-                                        key={item._id + index}
-                                        id={item._id}
-                                        name={item.name}
-                                        price={item.price}
-                                        veg={item.veg}
+                                        key={item.foodItemId+item.foodItemName + index}
+                                        id={item.foodItemId}
+                                        name={item.foodItemName}
+                                        price={item.foodItemPrice}
+                                        veg={item.foodItemVegetarian}
                                         addToCart={props.addToCart}
                                         removeFromCart={props.removeFromCart}
 

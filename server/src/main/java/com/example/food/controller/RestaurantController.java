@@ -31,7 +31,7 @@ public class RestaurantController {
         return restaurantService.addRestaurant(restaurant);
     }
 
-    @PutMapping("addFoodItem/{name}")
+    @PutMapping("/addFoodItem/{name}")
     public Restaurant addFoodItem(@PathVariable("name") String restaurantName,
                                   @RequestBody FoodItem foodItem){
         return restaurantService.addFoodItem(restaurantName,foodItem);
