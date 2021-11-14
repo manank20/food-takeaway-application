@@ -6,12 +6,11 @@ import RestaurantOrder from "./RestaurantOrder";
 import AccountIcon from "../AccountIcon";
 import Cart from "../Checkout/Cart"
 import Footer from "../Footer/Footer"
-function Order() {
-    var { id } = useParams();
+function Order(props) {
+    var { name } = useParams();
     const [restaurant, setRestaurant] = useState({
         id: "",
         name: "",
-        type: "",
         items: []
     });
     const [shoppingCart, setShoppingCart] = useState([]);
@@ -60,7 +59,7 @@ function Order() {
                     setLoad(false)
                 }
             }
-            setCount(count + 1)   
+            setCount(count + 1)
         }
     }
     useEffect(() => {
@@ -69,39 +68,44 @@ function Order() {
             totalPrice += (element.price * element.quantity)
         });
         setTotal(totalPrice);
-    }, [count,shoppingCart])
+    }, [count, shoppingCart])
     useEffect(() => {
         let mounted = true;
-        axios.get(`https://foodizone-server.herokuapp.com/api/${id}`)
+        axios.get(`http://localhost:8080/api/user/restaurant`, {
+            headers: {
+                Authorization: props.accessToken
+            }
+        })
             .then(function (response) {
+                
+                var res = [...response.data];
+                let eatery = res.find(element => element.restaurantName===name);
                 if (mounted) {
+                    console.log(eatery);
                     setRestaurant({
-                        id: response.data._id,
-                        name: response.data.name,
-                        type: response.data.type,
-                        items: [...response.data.foodItems]
+                        id: eatery.restaurantId,
+                        name: eatery.restaurantName,
+                        items: [...eatery.foodItems]
                     });
                 }
             }).catch(function (error) {
                 console.log(error);
             })
         return () => mounted = false;
-    }, [id])
+    }, [name])
     return (
         <div key={restaurant.id}>
-            <div style={{'display':cartDisplay?'none':'block'}} >
-            <Navbar searchDisplay={false} />
-            <AccountIcon />
-            <RestaurantOrder
-                
-                id={restaurant.id}
-                name={restaurant.name}
-                type={restaurant.type}
-                foodItems={restaurant.items}
-                addToCart={addToCart}
-                removeFromCart={removeFromCart}
+            <div style={{ 'display': cartDisplay ? 'none' : 'block' }} >
+                <Navbar searchDisplay={false} />
+                <AccountIcon />
+                <RestaurantOrder
+                    id={restaurant.id}
+                    name={restaurant.name}
+                    foodItems={restaurant.items}
+                    addToCart={addToCart}
+                    removeFromCart={removeFromCart}
 
-            />
+                />
             </div>
             <Cart shoppingCart={shoppingCart}
                 addToCart={addToCart}

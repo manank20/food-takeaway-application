@@ -20,8 +20,8 @@ function AppRoutes(props) {
             <ConditionalRoute exact path="/authenticate" condition={!props.loggedIn} redirect='/'>
                 <Login loggedIn={props.loggedIn} authenticated={props.authenticated}  applyAccessToken = {props.applyAccessToken} accessToken={props.accessToken}/>
             </ConditionalRoute>
-            <Route exact path={`/:id/order`}>
-                {props.loggedIn ? <Order /> : <Redirect to="/authenticate" />}
+            <Route exact path={`/:name/order`}>
+                {props.loggedIn ? <Order accessToken={props.accessToken} /> : <Redirect to="/authenticate" />}
             </Route>
             <ConditionalRoute exact path="/authenticate/register" condition={!props.registerNow} redirect='/'>
                 <Register authenticated={props.authenticated} registerNow={props.resgisterNow} registered={props.registered} />
