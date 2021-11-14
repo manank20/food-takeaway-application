@@ -13,7 +13,7 @@ function add3Dots(string, limit)
 function Restaurant(props){
     return(
         
-        <Link to={`/${props.id}/order`} style={{textDecoration:'none'}}>
+        <Link to={`/${props.name}/order`} style={{textDecoration:'none'}}>
         <div className="restaurant-container">
             <img  src={`/images/restaurant/${Math.floor(Math.random() * 4) + 1}.jpg`} className="restaurant-image" alt="" />
             <div className="restaurant-container-title">
