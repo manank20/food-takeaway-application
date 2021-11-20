@@ -4,12 +4,10 @@ function Footer() {
     return (
         <div>
             <section className="footer">
-                <p>&copy;<span> foodizone </span>is a Food Delievery Web Application.</p>
+                <p>&copy;<span> foodizone </span>is a Food Take-Away Web Application.</p>
                  <p>
-                    Made by <a href="https://github.com/Akhil2193">
-                        Akhil Bansal
-                    </a>
-                </p><a href="https://github.com/Akhil2193/Foodizone" >View Repository</a>
+                    Made for the Partial Fulfillment of Object Oriented Programming Course (CS F213)
+                </p><a href="https://github.com/apupneja/food-takeaway-application" >View Repository</a>
             </section>
         </div>
     )
