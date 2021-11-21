@@ -15,7 +15,7 @@ function Restaurant(props){
         
         <Link to={`/${props.name}/order`} style={{textDecoration:'none'}}>
         <div className="restaurant-container">
-            <img  src={`/images/restaurant/${Math.floor(Math.random() * 4) + 1}.jpg`} className="restaurant-image" alt="" />
+            <img  src={`/images/restaurant/${props.name}.jpg`} className="restaurant-image" alt="" />
             <div className="restaurant-container-title">
                 {props.name}
             </div>
