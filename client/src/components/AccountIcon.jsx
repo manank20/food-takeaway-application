@@ -2,17 +2,21 @@ import React, { useState } from "react";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-function AccountIcon() {
+function AccountIcon(props) {
     const [loggedOut, setLoggedOut] = useState(false)
-    function handleLogOut() {
-        axios.get('http://localhost:5000/logout')
-            .then(function (response) {
-                setLoggedOut(response.data.authentication)
-                console.log(response.data)
-            })
-            .catch(function (err) {
-                console.log(err);
-            })
+    function handleLogOut(){
+        axios.get('http://localhost:8080/api/logout',{
+            headers : {
+                Authorization:localStorage.getItem('token')
+            }
+        })
+        .then(function(response){
+            props.applyAccessToken('');
+            props.authenticated();
+        })
+        .catch(function(err){
+            console.log(err);
+        })
     }
     if (loggedOut) {
         return <Redirect to="/authenticate" />

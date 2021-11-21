@@ -16,7 +16,7 @@ function Navbar(props) {
     function handleLogOut(){
         axios.get('http://localhost:8080/api/logout',{
             headers : {
-                Authorization:props.accessToken
+                Authorization:localStorage.getItem('token')
             }
         })
         .then(function(response){
