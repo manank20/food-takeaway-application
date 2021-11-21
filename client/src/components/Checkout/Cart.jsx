@@ -56,20 +56,20 @@ function Cart(props) {
                             <span>&#8377;</span> {props.total}
                         </div>
                     </div>
-                    <div className="checkout-bill-total1">
+                    {/* <div className="checkout-bill-total1">
                         <div className="checkout-bill-total1-child1">
                             Delievery Charges
                         </div>
                         <div className="checkout-bill-total1-child2">
                             <span>&#8377;</span> 40
                         </div>
-                    </div>
+                    </div> */}
                     <div className="checkout-bill-total2">
                         <div className="checkout-bill-total2-child1">
                             To Pay
                         </div>
                         <div className="checkout-bill-total2-child2">
-                            <span>&#8377;</span> {props.total + 40}
+                            <span>&#8377;</span> {props.total}
                         </div>
                     </div>
                     <Link to={`/${props.restaurantId}/order/location`} style={{textDecoration:'none'}}>

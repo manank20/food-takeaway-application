@@ -10,7 +10,7 @@ function RestaurantList(props) {
             let mounted = true;
             axios.get(`http://localhost:8080/api/user/restaurant`,{
                 headers : {
-                    Authorization:props.accessToken
+                    Authorization:localStorage.getItem('token')
                 }
             })
                 .then(function (response) {

@@ -73,7 +73,7 @@ function Order(props) {
         let mounted = true;
         axios.get(`http://localhost:8080/api/user/restaurant`, {
             headers: {
-                Authorization: props.accessToken
+                Authorization: localStorage.getItem('token')
             }
         })
             .then(function (response) {
@@ -96,8 +96,8 @@ function Order(props) {
     return (
         <div key={restaurant.id}>
             <div style={{ 'display': cartDisplay ? 'none' : 'block' }} >
-                <Navbar searchDisplay={false} />
-                <AccountIcon />
+                <Navbar searchDisplay={false} authenticated={props.authenticated} applyAccessToken={props.applyAccessToken}/>
+                <AccountIcon authenticated={props.authenticated} applyAccessToken={props.applyAccessToken}/>
                 <RestaurantOrder
                     id={restaurant.id}
                     name={restaurant.name}
