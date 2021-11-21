@@ -4,7 +4,7 @@ function BillItem(props) {
     return (
         <div className="order-food">
             <div className="order-food-item">
-                <img className="order-food-item-image" src={`/images/dishes/1.jpg`} alt="" />
+                <img className="order-food-item-image" src={`/images/dishes/${props.name}.jpg`} alt="" />
                 <img src="/images/veg.png" alt="" className="order-food-item-veg" style={{ filter: `${props.veg ? "none" : "hue-rotate(247deg)"}` }} />
                 <div className="order-food-item-detail">
                     <p className="order-food-item-name">

@@ -30,7 +30,7 @@ function Navbar(props) {
 
     return (<nav className="navbar">
         <ul className="navbar-list">
-            <li className="logo navbar-list-items">foodizone</li>
+            <li className="logo navbar-list-items">Hungrezy</li>
             <li className="search navbar-list-items" >
                 <input onChange={handleSearch} name="search-bar" id="search-bar" placeholder="Search for restaurant, cuisine or a dish" spellCheck="false" />
                 <label onClick={handleClick} htmlFor="search-bar"><SearchIcon style={{ color: '#787878' }}  /></label>
