@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../Footer/Footer";
 import ErrorOutlineOutlinedIcon from '@material-ui/icons/ErrorOutlineOutlined';
 function Location() {
     const [displayAlert,setDisplayAlert] = useState(false);
@@ -24,7 +23,6 @@ function Location() {
                     </div>
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }
