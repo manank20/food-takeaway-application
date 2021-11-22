@@ -5,7 +5,7 @@ import Navbar from "../Navbar";
 import RestaurantOrder from "./RestaurantOrder";
 import AccountIcon from "../AccountIcon";
 import Cart from "../Checkout/Cart"
-import Footer from "../Footer/Footer"
+
 function Order(props) {
     var { name } = useParams();
     const [restaurant, setRestaurant] = useState({
@@ -117,7 +117,6 @@ function Order(props) {
                 displayCart={displayCart}
                 cartDisplay={cartDisplay}
             />
-            <Footer />
         </div>
     );
 }

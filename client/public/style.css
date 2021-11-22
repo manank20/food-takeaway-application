@@ -3,6 +3,9 @@
     padding: 0px;
     box-sizing: border-box;
 }
+#root{
+    min-height: 95vh;
+}
 .title{
     font-family: 'Style Script', cursive;
 }
