@@ -11,4 +11,12 @@ public class FoodOrder {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long restaurantId;
     private String name;
+
+    public String getName(){
+        return name;
+    }
+
+    public long getRestaurantId(){
+        return restaurantId;
+    }
 }

@@ -10,7 +10,7 @@ function App(props) {
     useEffect(() => {
         axios.get('http://localhost:8080/api/authenticate', {
             headers: {
-                Authorization: props.accessToken
+                Authorization: localStorage.getItem('token')
             }
         })
             .then(function (response) {
@@ -22,11 +22,11 @@ function App(props) {
                 setLoggedIn(false);
                 setLoad(true)
             })
-    }, [props.accessToken])
+    }, [])
     function authenticated(value) {
         axios.get('http://localhost:8080/api/authenticate', {
             headers: {
-                Authorization: props.accessToken
+                Authorization: localStorage.getItem('token')
             }
         })
             .then(function (response) {
@@ -44,7 +44,7 @@ function App(props) {
     if (load) {
 
         return (
-            <AppRoutes registered={registered} registerNow={registerNow} authenticated={authenticated} loggedIn={loggedIn} applyAccessToken={props.applyAccessToken} accessToken={props.accessToken} />
+            <AppRoutes registered={registered} registerNow={registerNow} authenticated={authenticated} loggedIn={loggedIn} applyAccessToken={props.applyAccessToken} />
         );
     } else {
         return <h1>Loading...</h1>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Footer from "../Footer/Footer"
 import axios from "axios";
 axios.defaults.withCredentials = true
 
@@ -45,7 +44,7 @@ function Login(props) {
     return (
         <div>
             <Link to="/" style={{ textDecoration: 'none' }}>
-                <div className="logo authenticate-logo">foodizone</div>
+                <div className="logo authenticate-logo">Hungrezy</div>
             </Link>
             <div className="login-form">
                 <form className="login-form-form" onSubmit={handleSubmit}>
@@ -59,7 +58,7 @@ function Login(props) {
                     <p className="register-link"> New User? <Link to="/authenticate/register" style={{ textDecoration: 'none' }}> Sign up</Link></p>
                 </form>
             </div>
-            <Footer />
+
         </div>
     )
 }

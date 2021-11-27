@@ -2,7 +2,7 @@ package com.example.food.service;
 
 import com.example.food.models.FoodItem;
 import com.example.food.models.FoodOrder;
-import com.example.food.models.Order;
+import com.example.food.models.Orders;
 import com.example.food.models.Restaurant;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public interface RestaurantService {
 
     List<Restaurant> getRestaurant();
 
-    Order placeOrder(Order order);
+    Orders placeOrder(Orders order);
 
-    List<Order> getOrder();
+    List<Orders> getOrder();
 }
