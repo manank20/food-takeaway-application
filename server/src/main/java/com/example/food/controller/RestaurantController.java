@@ -1,13 +1,13 @@
 package com.example.food.controller;
 
-import com.example.food.models.FoodItem;
-import com.example.food.models.FoodOrder;
-import com.example.food.models.Order;
-import com.example.food.models.Restaurant;
+import com.example.food.models.*;
 import com.example.food.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 
@@ -43,12 +43,14 @@ public class RestaurantController {
     }
 
     @PostMapping("/placeOrder")
-    public Order placeOrder(@RequestBody Order order){
-        return restaurantService.placeOrder(order);
+    public ResponseEntity<Orders> saveUser(@RequestBody Orders order){
+        //System.out.println("Result {}"+order.getUsername());
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/placeOrder").toUriString());
+        return ResponseEntity.created(uri).body(restaurantService.placeOrder(order));
     }
 
     @GetMapping("/getOrder")
-    public List<Order> getOrder(){
+    public List<Orders> getOrder(){
         return restaurantService.getOrder();
     }
 

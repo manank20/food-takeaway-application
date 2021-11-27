@@ -3,7 +3,7 @@ package com.example.food.service;
 
 import com.example.food.models.FoodItem;
 import com.example.food.models.FoodOrder;
-import com.example.food.models.Order;
+import com.example.food.models.Orders;
 import com.example.food.models.Restaurant;
 import com.example.food.repository.OrderRepository;
 import com.example.food.repository.RestaurantRepository;
@@ -39,12 +39,12 @@ public class RestaurantServiceImpl implements RestaurantService{
     }
 
     @Override
-    public Order placeOrder(Order order) {
+    public Orders placeOrder(Orders order) {
         return orderRepository.save(order);
     }
 
     @Override
-    public List<Order> getOrder() {
+    public List<Orders> getOrder() {
         return orderRepository.findAll();
     }
 
