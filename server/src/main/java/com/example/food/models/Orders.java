@@ -10,16 +10,11 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long restaurantId;
     private String username;
-    private String restaurantName;
     @ManyToMany(cascade = {CascadeType.ALL})
     private List<FoodOrder> foodItemOrder;
 
     public String getUsername(){
         return username;
-    }
-
-    public String getRestaurantName(){
-        return restaurantName;
     }
 
     public long getRestaurantId(){
