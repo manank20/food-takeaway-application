@@ -10,6 +10,7 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long restaurantId;
     private String username;
+    private String restaurantName;
     @ManyToMany(cascade = {CascadeType.ALL})
     private List<FoodOrder> foodItemOrder;
 
@@ -20,7 +21,9 @@ public class Orders {
     public long getRestaurantId(){
         return restaurantId;
     }
-
+    public String getRestaurantName(){
+        return restaurantName;
+    }
     public List<FoodOrder> getFoodItemOrder(){
         return foodItemOrder;
     }
