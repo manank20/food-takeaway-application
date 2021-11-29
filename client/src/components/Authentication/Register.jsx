@@ -38,7 +38,7 @@ function Register(props) {
     return (
         <div>
             <Link to="/" style={{ textDecoration: 'none' }}>
-                <div className="logo authenticate-logo">foodizone</div>
+                <div className="logo authenticate-logo">Hungrezy</div>
             </Link>
             <div className="login-form">
                 <form className="login-form-form" onSubmit={handleSubmit}>

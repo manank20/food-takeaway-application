@@ -1,11 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ShoppingCartTwoToneIcon from '@material-ui/icons/ShoppingCartTwoTone';
 import BillItem from "./BillItem";
 import ClearRoundedIcon from '@material-ui/icons/ClearRounded';
-function Cart(props) {
-    if (props.shoppingCart.length > 0) {
+import axios from "axios";
 
+function Cart(props) {
+    const [finalItems, setFinalItems] = useState({
+        username: localStorage.getItem('username'),
+        restaurantName:props.restaurantName,
+        foodItemOrder:[
+            {
+                name:''
+            }
+        ]
+    });
+    useEffect(()=>{
+        var ded=[];
+        for (let index = 0; index < props.shoppingCart.length; index++) {
+            var obj ={};
+            obj['name']=props.shoppingCart[index].name;
+            ded.push(obj);     
+        }
+        if(ded.length>0){
+
+            setFinalItems(prevValue=>{
+                return({
+                    ...prevValue,
+                    foodItemOrder:[...ded]
+                })
+            })
+        }
+
+    },[props.shoppingCart])
+    function handlePayment(){
+        // console.log(finalItems);
+        axios.post(`http://localhost:8080/api/user/placeOrder`,finalItems, {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+        })
+            .then(function (response) {
+                alert('Order Placed Suucessfully!')
+                window.location.reload(false);
+            })
+            .catch(function (error) {
+                alert('Oops! Something went wrong');
+                console.log(error);
+            })
+    }
+    if (props.shoppingCart.length > 0) {
 
         return (<div>
             <div className="checkout-mobile" onClick={props.displayCart} style={{ 'display': props.cartDisplay ? 'none' : 'flex' }}>
@@ -36,7 +80,8 @@ function Cart(props) {
                 </div>
                 {props.shoppingCart.map(item => {
                     return (
-                        <BillItem id={item.id}
+                        <BillItem
+                        id={item.id}
                             name={item.name}
                             price={item.price}
                             veg={item.veg}
@@ -72,11 +117,11 @@ function Cart(props) {
                             <span>&#8377;</span> {props.total}
                         </div>
                     </div>
-                    <Link to={`/${props.restaurantId}/order/location`} style={{textDecoration:'none'}}>
-                    <button className="checkout-bill-total3">
+                    {/* <Link to={`/${props.restaurantId}/order/location`} style={{textDecoration:'none'}}> */}
+                    <button className="checkout-bill-total3" onClick={handlePayment}>
                         Order Now
                     </button>
-                    </Link>
+                    {/* </Link> */}
                 </div>
             </div>
         </div>)
