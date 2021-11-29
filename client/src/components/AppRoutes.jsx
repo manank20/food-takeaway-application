@@ -4,7 +4,6 @@ import Order from "./Order/Order";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./Authentication/Login"
 import Register from "./Authentication/Register"
-import Location from "./Payment/Location"
 
 const ConditionalRoute = ({ children, condition, redirect, ...rest }) => (
     <Route {...rest} render={() => (condition ? children : <Redirect to={redirect} />)} />
@@ -26,9 +25,7 @@ function AppRoutes(props) {
             <ConditionalRoute exact path="/authenticate/register" condition={!props.registerNow} redirect='/'>
                 <Register authenticated={props.authenticated} registerNow={props.resgisterNow} registered={props.registered} />
             </ConditionalRoute>
-            <Route exact path='/:id/order/location'>
-                <Location />
-            </Route>
+            
         </Switch>
 
     );

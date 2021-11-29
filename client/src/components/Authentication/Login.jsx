@@ -34,6 +34,7 @@ function Login(props) {
         })
             .then(function (response) {
                 props.applyAccessToken(response.data.access_token);
+                localStorage.setItem('username',form.username);
                 props.authenticated();
             })
             .catch(function (error) {
