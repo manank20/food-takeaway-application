@@ -96,7 +96,7 @@ function Order(props) {
     return (
         <div key={restaurant.id}>
             <div style={{ 'display': cartDisplay ? 'none' : 'block' }} >
-                <Navbar searchDisplay={false} authenticated={props.authenticated} applyAccessToken={props.applyAccessToken}/>
+                {/* <Navbar searchDisplay={false} authenticated={props.authenticated} applyAccessToken={props.applyAccessToken}/> */}
                 <AccountIcon authenticated={props.authenticated} applyAccessToken={props.applyAccessToken}/>
                 <RestaurantOrder
                     id={restaurant.id}

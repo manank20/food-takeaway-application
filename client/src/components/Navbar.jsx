@@ -3,12 +3,13 @@ import SearchIcon from '@material-ui/icons/Search';
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-function Navbar(props) {
+function Navbar({ parentCallback },props) {
 
     const [search, setSearch] = useState();
     function handleSearch(event) {
         const value = event.target.value;
         setSearch(value);
+        parentCallback(value);
     }
     function handleClick() {
         props.onChange(search);

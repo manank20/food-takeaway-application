@@ -25,10 +25,13 @@ function RestaurantList(props) {
             return () => mounted = false;
       
     }, [props.accessToken]);
+
+    const filtered = props.search.length === 0 ? restaurants : 
+    restaurants.filter(restaurant => restaurant.restaurantName.toLowerCase().includes(props.search.toLowerCase()))
     return (
 
         <div className="restaurant-list" >
-            {restaurants.map(restaurant => <Restaurant
+            {filtered.map(restaurant => <Restaurant
                 key={restaurant.restaurantId}
                 id={restaurant.restaurantId}
                 name={restaurant.restaurantName}
