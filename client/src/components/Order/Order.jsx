@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
 import axios from "axios";
-import Navbar from "../Navbar";
 import RestaurantOrder from "./RestaurantOrder";
 import AccountIcon from "../AccountIcon";
 import Cart from "../Checkout/Cart"
@@ -77,9 +76,9 @@ function Order(props) {
             }
         })
             .then(function (response) {
-                
+
                 var res = [...response.data];
-                let eatery = res.find(element => element.restaurantName===name);
+                let eatery = res.find(element => element.restaurantName === name);
                 if (mounted) {
                     console.log(eatery);
                     setRestaurant({
@@ -96,15 +95,17 @@ function Order(props) {
     return (
         <div key={restaurant.id}>
             <div style={{ 'display': cartDisplay ? 'none' : 'block' }} >
-                {/* <Navbar searchDisplay={false} authenticated={props.authenticated} applyAccessToken={props.applyAccessToken}/> */}
-                <AccountIcon authenticated={props.authenticated} applyAccessToken={props.applyAccessToken}/>
+                <Link to="/" style={{ textDecoration: 'none' }}>
+                    <div className="logo authenticate-logo">Hungrezy</div>
+                </Link>
+                <AccountIcon authenticated={props.authenticated} applyAccessToken={props.applyAccessToken} />
                 <RestaurantOrder
                     id={restaurant.id}
                     name={restaurant.name}
                     foodItems={restaurant.items}
                     addToCart={addToCart}
                     removeFromCart={removeFromCart}
-
+                    shoppingCart={shoppingCart}
                 />
             </div>
             <Cart shoppingCart={shoppingCart}

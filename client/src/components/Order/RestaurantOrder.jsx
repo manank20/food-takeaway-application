@@ -48,7 +48,7 @@ function RestaurantOrder(props) {
                 <div className="order-restaurant-image-header">
                     <img className="order-restaurant-image1" src="/images/jakub-kapusnak-4f4YZfDMLeU-unsplash.jpg" alt="" />
                     <div className="order-restaurant-image-child">
-                        <img src="/images/stefan-johnson-xIFbDeGcy44-unsplash.jpg" alt="" className="order-restaurant-image2 marginbottom5"/>
+                        <img src="/images/stefan-johnson-xIFbDeGcy44-unsplash.jpg" alt="" className="order-restaurant-image2 marginbottom5" />
                         <img src="/images/pablo-merchan-montes-dc_JMu8lb5U-unsplash.jpg" alt="" className="order-restaurant-image2 margintop5" />
                     </div>
                 </div>
@@ -81,17 +81,30 @@ function RestaurantOrder(props) {
                         return (
                             <div className="order-restaurant-food-category">
                                 <h1 className="order-restaurant-food-category-heading" id={`restaurant-menu-categories-${category}`}>{category}</h1>
-                                {load ? foodItemSorted[index].map(item =>
-                                    <FoodItem
-                                        key={item.foodItemId+item.foodItemName + index}
-                                        id={item.foodItemId}
-                                        name={item.foodItemName}
-                                        price={item.foodItemPrice}
-                                        veg={item.foodItemVegetarian}
-                                        addToCart={props.addToCart}
-                                        removeFromCart={props.removeFromCart}
+                                {load ? foodItemSorted[index].map(item => {
+                                    const find = props.shoppingCart.findIndex(element => element.name === item.foodItemName)
+                                    var quantity=0;
+                                    if(find!==-1){
+                                        quantity=props.shoppingCart[find].quantity;
+                                    }
+                                    else{
+                                        quantity=0;
+                                    }    
+                                    return (
 
-                                    />) : "data is loading"}
+                                        <FoodItem
+                                            key={item.foodItemId + item.foodItemName + index}
+                                            id={item.foodItemId}
+                                            name={item.foodItemName}
+                                            price={item.foodItemPrice}
+                                            veg={item.foodItemVegetarian}
+                                            addToCart={props.addToCart}
+                                            removeFromCart={props.removeFromCart}
+                                            quantity={quantity}
+
+                                        />)
+                                }) : "data is loading"}
+
                             </div>
                         )
                     }))

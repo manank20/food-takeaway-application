@@ -8,7 +8,7 @@ function BillItem(props) {
                 <img src="/images/veg.png" alt="" className="order-food-item-veg" style={{ filter: `${props.veg ? "none" : "hue-rotate(247deg)"}` }} />
                 <div className="order-food-item-detail">
                     <p className="order-food-item-name">
-                        {props.name}&emsp;({props.quantity} pcs.)
+                    {props.name}
                     </p>
                     <p className="order-food-item-price">
                         <span>&#8377;</span> {props.price}
@@ -17,22 +17,41 @@ function BillItem(props) {
 
             </div>
             <div className="cart-buttons">
-            <button className="add-to-cart" onClick={() => {
-                props.addToCart({
-                    id: props.id,
-                    name: props.name,
-                    price: props.price,
-                    veg: props.veg,
-                    quantity:1
-                })
+                {props.quantity === 0 ? <button className="add-to-cart-empty" onClick={() => {
+                    props.addToCart({
+                        id: props.id,
+                        name: props.name,
+                        price: props.price,
+                        veg: props.veg,
+                        quantity: 1
+                    })
+                }}>
+                    Add +
+                </button> :
+                    <div className="add-to-cart">
+                        <button className="add-to-cart-item" onClick={() => {
+                            props.removeFromCart(props.id)
+
+                        }}>
+                            -
+                        </button>
+                        <div className="add-to-cart-item">
+                            {props.quantity}
+                        </div>
+                        <button className="add-to-cart-item" onClick={() => {
+                            props.addToCart({
+                                id: props.id,
+                                name: props.name,
+                                price: props.price,
+                                veg: props.veg,
+                                quantity: 1
+                            })
+
+                        }}>
+                            +
+                        </button>
+                    </div>}
                 
-            }}>
-                Add
-            </button>
-            <button className="remove-from-cart" onClick={()=>{
-                props.removeFromCart(props.id)
-                
-            }}>Remove</button>
             </div>
         </div>
     )
